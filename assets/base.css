@@ -2,5 +2,9 @@
     font-size: 13px;
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style: circle;
+}
+
+table {
+    border: 1px solid black;
 }
