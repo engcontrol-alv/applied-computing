@@ -11,9 +11,11 @@ O repositório está organizado em módulos funcionais, separando Infraestrutura
 ```
 applied-computing/
 ├── tools/                      # Infraestrutura & Backend
+│   ├── automation/
+│   │   └── linux/              # Scripts de Gestão de Arquivos (CRUD/Backup)
 │   └── monitoring/
-│       └── windows/
-│           └── server_health_check.ps1
+│       ├── linux/              # Scripts de Segurança e Redes
+│       └── windows/            # Scripts PowerShell para SCADA
 │
 └── web-dashboard/              # Frontend & HMI
     ├── index.html
@@ -23,21 +25,23 @@ applied-computing/
         └── styles.css
 ```
 
-Detalhamento dos Módulos
+### Detalhamento dos Módulos
+
+**1. Tools (Infraestrutura)**
+Scripts de automação, monitoramento de servidores e utilitários de sistema.
+
+* **automation/linux/**: Ferramentas de operação e manutenção.
+    * Scripts de backup (`config_backup`), limpeza segura de disco (`interactive_cleanup`) e transferência de arquivos em lote (`batch_file_transfer`).
+* **monitoring/linux/**: Diagnóstico e Cibersegurança.
+    * Auditoria de logs (`auth_audit`), scanner de portas (`network_scan`) e verificação de vulnerabilidades (`os_vuln_check`).
+* **monitoring/windows/**: Ferramentas para diagnóstico de servidores SCADA.
+    * O script `server_health_check.ps1` unifica verificação de portas (Modbus/S7), processos críticos e logs de segurança.
+
+**2. Web-Dashboard (Frontend)**
+Interfaces Web aplicadas a contextos industriais.
+* Protótipos de dashboards para visualização de dados.
+* Testes de tecnologias Web (HTML/CSS/JS) para chão de fábrica.
 
 
-1. Tools (Infraestrutura) Scripts de automação, monitoramento de servidores e utilitários de sistema.
-    •monitoring/windows/: Ferramentas para diagnóstico de servidores SCADA. O script server_health_check.ps1 unifica verificação de portas (Modbus/S7), processos críticos e logs de segurança.
-
-2. Web-Dashboard (Frontend) Interfaces Web aplicadas a contextos industriais.
-    •Protótipos de dashboards para visualização de dados.
-    •Testes de tecnologias Web (HTML/CSS/JS) para chão de fábrica.
-
-Tecnologias e Conceitos
-    •Automação de OS: PowerShell (Windows), Bash (Linux).
-    •Web Industrial: HTML5, CSS3, JavaScript.
-    •Protocolos: Modbus, MQTT.
-    •Metodologia: DevOps aplicado à Automação Industrial.
-
-
-Desenvolvido por engcontrol-alv
+---
+*Desenvolvido por [engcontrol-alv](https://github.com/engcontrol-alv)*
