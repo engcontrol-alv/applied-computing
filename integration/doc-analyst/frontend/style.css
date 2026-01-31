@@ -1,0 +1,291 @@
+/* --- IMPORT FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    /* --- TEMA CLARO (Clean Mode) --- */
+    --bg-body: #F7F8FA;       
+    --bg-surface: #F7F8FA;    
+    --bg-subtle: #E5E7EB;     
+    --bg-user-msg: #EFF6FF;   
+    
+    --border: transparent;    
+    
+    --text-primary: #111827;  
+    --text-secondary: #6B7280;
+    --text-inverse: #FFFFFF;  
+    
+    --accent: #1E3A8A;        
+    --accent-hover: #172554;
+    --accent-light: #DBEAFE;  
+    
+    --status-success: #15803D;
+    --status-warning: #B45309;
+    --status-error: #B91C1C;
+    
+    --radius: 8px;            
+    --shadow-sm: none; 
+    --header-height: 60px;
+    --max-width: 1200px;
+    
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* --- TEMA ESCURO --- */
+[data-theme="dark"] {
+    --bg-body: #0F172A;       
+    --bg-surface: #0F172A;    
+    --bg-subtle: #1E293B;     
+    --bg-user-msg: #1E3A8A;   
+    
+    --border: transparent;        
+    
+    --text-primary: #F8FAFC;  
+    --text-secondary: #94A3B8;
+    --text-inverse: #FFFFFF;
+    
+    --accent: #3B82F6;        
+    --accent-hover: #2563EB;
+    --accent-light: #1E3A8A;  
+    
+    --status-success: #4ADE80; 
+    --status-warning: #FBBF24; 
+    --status-error: #F87171;   
+    
+    --shadow-sm: none; 
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.5;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- APP STRUCTURE --- */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: var(--max-width);
+    height: 92vh;
+    background-color: var(--bg-surface);
+    border: none;
+    box-shadow: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+/* --- TOP BAR --- */
+.top-bar {
+    height: var(--header-height);
+    background-color: var(--bg-surface);
+    display: flex; 
+    align-items: center; 
+    padding: 0; 
+    flex-shrink: 0;
+    justify-content: center; 
+    transition: background-color 0.3s ease;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-icon {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+}
+
+/* Upload Button */
+.file-upload-wrapper { display: flex; align-items: center; }
+.hidden-input { display: none; }
+
+.upload-btn {
+    display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500;
+    color: var(--text-primary); 
+    background-color: transparent; 
+    border: none; 
+    padding: 8px 16px; border-radius: var(--radius);
+    cursor: pointer; transition: all 0.2s ease-out;
+}
+.upload-btn:hover { background-color: var(--bg-subtle); }
+
+.status-dot { 
+    width: 6px; height: 6px; border-radius: 50%; 
+    background-color: var(--status-success);
+    transition: background-color 0.3s;
+}
+
+/* Ícones de Ação */
+.actions-group { display: flex; gap: 8px; }
+
+.icon-btn {
+    width: 36px; height: 36px;
+    background: transparent; border: none;
+    border-radius: var(--radius); color: var(--text-secondary);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease-out;
+}
+.icon-btn:hover { background-color: var(--bg-subtle); color: var(--text-primary); }
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex: 1; display: flex; flex-direction: column;
+    background-color: var(--bg-body);
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+
+/* --- CHAT AREA --- */
+.chat-interface {
+    flex: 1; overflow-y: auto; padding: 32px; display: flex; flex-direction: column; gap: 24px;
+    scrollbar-width: thin; scrollbar-color: var(--text-secondary) transparent;
+}
+
+/* WRAPPER DAS MENSAGENS */
+.message-wrapper { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 12px; 
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+
+/* ALINHAMENTOS */
+/* Robô: Alinha à esquerda (Padrão) */
+.message-wrapper.bot {
+    justify-content: flex-start;
+}
+
+/* Usuário: Alinha à direita */
+.message-wrapper.user {
+    justify-content: flex-end;
+}
+
+.message { flex: 1; font-size: 15px; line-height: 1.6; }
+
+.msg-content {
+    padding: 20px 24px; 
+    border-radius: var(--radius); 
+    position: relative;
+    transition: background-color 0.3s ease;
+    max-width: 85%; /* Impede que o texto ocupe a linha toda, melhorando a leitura */
+}
+
+/* Estilo Robô */
+.bot .msg-content { 
+    background-color: transparent; 
+    border: none; 
+    color: var(--text-primary); 
+    text-align: left;
+}
+
+/* Estilo Usuário */
+.user .msg-content { 
+    background-color: transparent; 
+    border: none; 
+    color: var(--accent); 
+    text-align: right; /* Alinha o texto à direita para criar a "borda" visual */
+}
+
+[data-theme="dark"] .user .msg-content { 
+    color: var(--text-inverse); 
+}
+
+/* --- INPUT AREA --- */
+.input-region {
+    background-color: var(--bg-surface); border-top: none; padding: 24px;
+    transition: background-color 0.3s ease;
+}
+.input-wrapper { display: flex; gap: 12px; max-width: 900px; margin: 0 auto; background-color: var(--bg-surface); height: 48px; }
+
+.input-wrapper input {
+    flex: 1; background-color: var(--bg-subtle); border: none;
+    border-radius: var(--radius); color: var(--text-primary); padding: 0 16px;
+    font-size: 14px; font-family: var(--font-ui); transition: all 0.2s;
+}
+.input-wrapper input:focus { box-shadow: 0 0 0 2px var(--accent); } 
+
+.input-wrapper button {
+    width: 48px; height: 48px; background-color: var(--accent); border: none;
+    border-radius: var(--radius); color: var(--text-inverse); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; flex-shrink: 0;
+}
+.input-wrapper button:hover { background-color: var(--accent-hover); }
+
+/* --- SETTINGS POPOVER --- */
+.settings-wrapper { position: relative; }
+.settings-popover {
+    display: none; position: absolute; 
+    top: 45px; right: 0;
+    width: 300px;
+    background-color: var(--bg-subtle); 
+    border: none; border-radius: var(--radius);
+    padding: 20px; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.settings-popover.active { display: block; animation: fadeIn 0.15s ease-out; }
+.popover-header { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.input-group { margin-bottom: 12px; }
+.settings-popover input {
+    width: 100%; height: 36px; padding: 0 12px; 
+    border: none; border-radius: var(--radius);
+    font-size: 13px; color: var(--text-primary); background-color: var(--bg-body); 
+}
+.save-btn {
+    width: 100%; height: 36px; background-color: var(--accent); color: var(--text-inverse);
+    border: none; border-radius: var(--radius); font-size: 13px; font-weight: 500; cursor: pointer;
+}
+.save-btn:hover { background-color: var(--accent-hover); }
+
+/* --- SELECTION MODE --- */
+.msg-checkbox {
+    display: none; appearance: none; width: 18px; height: 18px;
+    border: 1px solid var(--text-secondary); border-radius: 4px; margin-top: 22px; cursor: pointer;
+    background-color: transparent; flex-shrink: 0;
+}
+.msg-checkbox:checked {
+    background-color: var(--accent); border-color: var(--accent);
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+body.selection-mode .msg-checkbox { display: block; }
+
+.selection-actions { display: flex; justify-content: space-between; align-items: center; height: 48px; max-width: 900px; margin: 0 auto; }
+.action-btn { height: 40px; padding: 0 20px; border-radius: var(--radius); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.action-btn.primary { background-color: var(--accent); color: var(--text-inverse); border: none; }
+.action-btn.secondary { background-color: var(--bg-subtle); color: var(--text-primary); border: none; }
+.action-btn.cancel { background-color: transparent; color: var(--status-error); border: none; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.icon-btn {
+    width: 36px; height: 36px;
+    background: transparent; border: none;
+    border-radius: var(--radius); color: var(--text-secondary);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease-out;
+    
+    /* ADICIONE ISSO: Remove sublinhado caso seja um link */
+    text-decoration: none; 
+}
