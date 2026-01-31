@@ -11,7 +11,7 @@ The repository is organized into functional modules, separating Infrastructure, 
 ```text
 applied-computing/
 │
-├── integration/                # [NEW] Cloud & AI Integration Module
+├── integration/                # Cloud & AI Integration Module
 │   └── doc-analyst/            # Document Analysis Solution (Zero Trust)
 │       ├── README.md           # Module-specific documentation
 │       │
@@ -20,13 +20,15 @@ applied-computing/
 │       │   └── requirements.txt
 │       │
 │       └── frontend/           # Visual Interface (SPA)
+│           ├── assets/         # Media & Resources
+│           │   ├── doc-analyst-preview.jpg
+│           │   └── perfil.jpg
+│           │
 │           ├── index.html      # Onyx Cover (Landing Page)
 │           ├── home.css        # Cover Styles
 │           ├── app.html        # Main Application (Clean Mode)
 │           ├── style.css       # Application Styles
-│           ├── script.js       # Client-side Logic
-│           ├── perfil.jpg      # Assets
-│           └── image_docAnl.jpg
+│           └── script.js       # Client-side Logic
 │
 ├── tools/                      # Infrastructure & Backend (Legacy)
 │   ├── automation/
