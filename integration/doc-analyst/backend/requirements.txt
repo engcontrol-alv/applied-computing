@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+pyngrok
+google-generativeai
+pypdf
+nest-asyncio
+pdf2image
+pytesseract
