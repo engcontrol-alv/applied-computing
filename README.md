@@ -14,17 +14,22 @@ applied-computing/
 ├── index.html                  # Root Redirector -> Web Dashboard
 │
 ├── integration/                # Cloud & AI Integration Module
-│   └── doc-analyst/            # Document Analysis Solution (Zero Trust)
-│       ├── README.md           # Module-specific documentation
-│       │
-│       ├── backend/            # Processing Logic (Python/Localhost)
-│       │   ├── main.py         # API Server (Flask Wrapper)
-│       │   └── requirements.txt
-│       │
-│       └── frontend/           # Visual Interface (SPA)
-│           ├── app.html        # Main Application (Functional Tool)
-│           ├── style.css       # Application Styles
-│           └── script.js       # Client-side Logic
+│   ├── doc-analyst/            # Document Analysis Solution (Zero Trust)
+│   │   ├── README.md           # Module-specific documentation
+│   │   │
+│   │   ├── backend/            # Processing Logic (Python/Localhost)
+│   │   │   ├── main.py         # API Server (Flask Wrapper)
+│   │   │   └── requirements.txt
+│   │   │
+│   │   └── frontend/           # Visual Interface (SPA)
+│   │       ├── app.html        # Main Application (Functional Tool)
+│   │       ├── style.css       # Application Styles
+│   │       └── script.js       # Client-side Logic
+│   │
+│   └── tech-translator/        # [NEW] Technical Translator (Python + LangChain)
+│       ├── translator.py       # CLI Application
+│       ├── requirements.txt    # Dependencies
+│       └── .env                # Local Credentials (GitIgnored)
 │
 ├── tools/                      # Infrastructure & Backend (Legacy)
 │   ├── automation/
@@ -68,6 +73,15 @@ Doc Analyst AI: Technical document analysis system using GenAI and OCR with Edge
 * **Frontend:** Decoupled Web Interface featuring the "Onyx" design system.
 
 * **Backend:**  Local Python API for secure data orchestration.
+
+#### integration/tech-translator/
+Tech Translator CLI: Automated translation tool optimized for engineering documentation using Large Language Models.
+
+* **Core:** Python + LangChain orchestration using Google Gemini 1.5 Flash.
+
+* **Features:** Context-aware translation that strictly preserves technical jargon (e.g., "deploy", "pipeline") and Markdown formatting.
+
+* **Security:** Environment variable management (.env) for API key protection.
 
 ### 2. Tools (Infrastructure)
 Automation scripts, server monitoring, and system utilities for operational environments.
