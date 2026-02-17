@@ -14,20 +14,39 @@ Em fluxos de onboarding digital, KYC (Know Your Customer) e prevenção à fraud
 Este repositório apresenta uma Prova de Conceito (Proof of Concept) de um pipeline automatizado que substitui a análise manual. O sistema é desenhado para:
 1. Receber o artefato (imagem) de forma segura.
 2. Isolar e armazenar o documento em infraestrutura de nuvem.
-3. Processar a imagem via IA generativa/OCR (Document Intelligence) em tempo real.
-4. Retornar dados estruturados (Titular, Banco, Validade) para consumo de sistemas terceiros (ERP, CRM ou motor de fraude).
+3. Processar a imagem via IA/OCR (Document Intelligence) em tempo real.
+4. Retornar dados estruturados (Titular, Banco, Validade) para consumo de sistemas terceiros.
+
+## Segurança e Privacidade
+- **PCI DSS:** Esta aplicação não está em conformidade com as normas PCI DSS. Não utilize cartões reais em ambientes de produção sem a devida implementação de criptografia e conformidade.
+- **Proteção de Dados:** O arquivo .env está configurado no .gitignore para não expor dados sensíveis no histórico de commits.
+- **Limpeza de Dados:** Recomenda-se configurar políticas de retenção no Azure Blob Storage para excluir imagens após o processamento.
+
+## Principais Funcionalidades
+- **Extração Automática:** Identificação de número, titular, data de validade e instituição emissora.
+- **Validação em Nuvem:** Armazenamento automático em Azure Blob Storage para logs de auditoria.
+- **Análise de Confiança:** Retorno do índice de precisão da IA para cada campo extraído.
+- **Interface Intuitiva:** Dashboard desenvolvido em Streamlit para upload facilitado via Drag & Drop.
 
 ## Arquitetura e Tecnologias
-
-A solução foi projetada com foco em escalabilidade e separação de responsabilidades (Frontend, Storage e Processamento):
-
 - **Interface de Usuário:** Python + Streamlit para prototipagem da interface de upload.
-- **Camada de Armazenamento:** Azure Blob Storage (`blob_service.py`), garantindo retenção segura do arquivo original para fins de auditoria.
-- **Camada de Inteligência:** Azure AI Document Intelligence (`credit_card_service.py`), utilizando o modelo pré-treinado "prebuilt-creditCard" para extração estruturada e análise de confiabilidade dos dados.
+- **Camada de Armazenamento:** Azure Blob Storage (blob_service.py).
+- **Camada de Inteligência:** Azure AI Document Intelligence (credit_card_service.py), utilizando o modelo pré-treinado "prebuilt-creditCard".
+
+### Exemplo de Saída (JSON)
+```json
+{
+  "card_holder": "NOME DO TITULAR",
+  "card_number": "0000 0000 0000 0000",
+  "expiry_date": "MM/AA",
+  "bank_name": "BANCO EMISSOR",
+  "confidence_score": 0.98
+}
+```
 
 ## Estrutura do Repositório
 
-```bash
+```text
 fraud-detector/
 ├── src/
 │   ├── app.py
@@ -36,7 +55,7 @@ fraud-detector/
 │   │   └── credit_card_service.py
 │   └── utils/
 │       └── Config.py
-├── .env
+├── .env.example
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -49,32 +68,26 @@ fraud-detector/
 - Credenciais ativas do Microsoft Azure (Storage Account e Document Intelligence Resource).
 
 ### Configuração do Ambiente
-1. Clone o repositório:
+1. Clone o repositório e acesse a pasta:
 
 ```bash
-git clone https://github.com/engcontrol-alv/fraud-detector.git
-cd fraud-detector
+git clone https://github.com/engcontrol-alv/applied-computing.git
+cd applied-computing/integration/fraud-detector
 ```
-2. Crie e ative um ambiente virtual:
+
+2. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env
+```
+
+3. Configure as variáveis de ambiente:
+Crie um arquivo .env na raiz do projeto utilizando o comando abaixo ou preenchendo as chaves manualmente:
 
 ```bash
-python -m venv venv
+cp .env.example .env
 ```
-# Windows:
-```bash
-venv\Scripts\activate
-```
-# Linux/Mac:
-```bash
-source venv/bin/activate
-```
-3. Instale as dependências listadas:
 
-```bash
-pip install -r requirements.txt
-```
-4. Configure as variáveis de ambiente:
-Crie um arquivo .env na raiz do projeto contendo as seguintes chaves de integração:
+- O arquivo deve conter as seguintes chaves obtidas no Portal Azure:
 
 ```env
 ENDPOINT="seu_endpoint_azure_document_intelligence"
@@ -82,6 +95,13 @@ SUBSCRIPTION_KEY="sua_chave_azure_document_intelligence"
 AZURE_STORAGE_CONNECTION_STRING="sua_connection_string_storage_account"
 CONTAINER_NAME="seu_nome_de_container"
 ```
+
+
+4. Instale as dependências e execute:
+```bash
+pip install -r requirements.txt
+```
+
 5. Inicialize a aplicação localmente:
 
 ```Bash
