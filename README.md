@@ -12,47 +12,66 @@ The repository is organized into functional modules, separating Infrastructure, 
 applied-computing/
 │
 ├── index.html                  # Root Redirector -> Web Dashboard
+├── README.md                   # Main Documentation
+├── .gitignore                  # Global Git ignore rules
 │
 ├── integration/                # Cloud & AI Integration Module
 │   ├── doc-analyst/            # Document Analysis Solution (Zero Trust)
-│   │   ├── README.md           # Module-specific documentation
-│   │   │
-│   │   ├── backend/            # Processing Logic (Python/Localhost)
-│   │   │   ├── main.py         # API Server (Flask Wrapper)
+│   │   ├── README.md
+│   │   ├── backend/            # Processing Logic (Python/Flask)
+│   │   │   ├── main.py
 │   │   │   └── requirements.txt
-│   │   │
 │   │   └── frontend/           # Visual Interface (SPA)
-│   │       ├── app.html        # Main Application (Functional Tool)
-│   │       ├── style.css       # Application Styles
-│   │       └── script.js       # Client-side Logic
+│   │       ├── .gitignore
+│   │       ├── anotacoes.txt
+│   │       ├── app.html
+│   │       ├── script.js
+│   │       └── style.css
 │   │
-│   └── tech-translator/        # [NEW] Technical Translator (Python + LangChain)
-│       ├── translator.py       # CLI Application
-│       ├── requirements.txt    # Dependencies
-│       └── .env                # Local Credentials (GitIgnored)
+│   ├── fraud-detector/         # Anti-Fraud Engine (Azure AI)
+│   │   ├── README.md
+│   │   ├── .env.example        # Environment variables template
+│   │   ├── .gitignore
+│   │   ├── requirements.txt
+│   │   └── src/                # Core Application Logic
+│   │       ├── app.py          # Entry Point (Streamlit)
+│   │       ├── services/       # Azure Services Integration
+│   │       │   ├── blob_service.py
+│   │       │   └── credit_card_service.py
+│   │       └── utils/
+│   │           └── Config.py   # Configuration Manager
+│   │
+│   └── tech-translator/        # Technical Translator (Python + LangChain)
+│       ├── README.md
+│       ├── requirements.txt
+│       └── translator.py       # CLI Application
 │
-├── tools/                      # Infrastructure & Backend (Legacy)
+├── tools/                      # Infrastructure & Backend
 │   ├── automation/
-│   │   └── linux/              # File Management Scripts (CRUD/Backup)
+│   │   └── linux/              # Operations & Maintenance Tools
+│   │       ├── batch_file_transfer.sh
 │   │       ├── config_backup.sh
-│   │       ├── interactive_cleanup.sh
-│   │       └── batch_file_transfer.sh
+│   │       └── interactive_cleanup.sh
 │   │
 │   └── monitoring/
-│       ├── linux/              # Security & Network Scripts (Bash)
+│       ├── linux/              # Security & Diagnostics (Bash)
 │       │   ├── auth_audit.sh
 │       │   ├── network_scan.sh
-│       │   └── os_vuln_check.sh
+│       │   ├── os_vuln_check.sh
+│       │   └── web_health_check.sh
 │       │
-│       ├── windows/            # PowerShell Scripts for SCADA
-│       │   └── server_health_check.ps1
+│       ├── network/            # Connectivity Diagnostics (Python)
+│       │   ├── README.md
+│       │   ├── README.pt-br.md
+│       │   ├── requirements.txt
+│       │   └── site_monitor.py
 │       │
-│       └── network/            # Python Scripts (Cross-platform)
-│           └── site_monitor.py
+│       └── windows/            # SCADA/OT Health Checks (PowerShell)
+│           └── server_health_check.ps1
 │
 └── web-dashboard/              # Portfolio Hub & Interface Styles
     ├── index.html              # Onyx Hub (Main Entry Point)
-    ├── home.css                # Hub Styles
+    ├── home.css
     └── assets/                 # Shared Media Resources
         ├── doc-analyst-preview.jpg
         └── perfil.jpg
@@ -62,6 +81,15 @@ applied-computing/
 
 ### 1. Integration (GenAI & Cloud)
 Edge modules integrating AI services with secure, modern architecture.
+
+#### integration/fraud-detector/
+* **Anti-Fraud Engine:** Intelligent validation system using Azure AI Document Intelligence and Azure Blob Storage.
+
+* **Core:** (`credit_card_service.py`) for OCR and data extraction using the prebuilt-creditCard model.
+
+* **Storage:** (`blob_service.py`) for document orchestration.
+
+* **Interface:** Streamlit dashboard for interactive uploads.
 
 #### integration/doc-analyst/
 Doc Analyst AI: Technical document analysis system using GenAI and OCR with Edge-to-Cloud architecture.
