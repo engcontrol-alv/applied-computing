@@ -1,1 +1,17 @@
 anotation.txt
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# VS Code settings
+.vscode/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
