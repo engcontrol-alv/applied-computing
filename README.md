@@ -53,6 +53,12 @@ applied-computing/
 │   │       ├── config_backup.sh
 │   │       └── interactive_cleanup.sh
 │   │
+│   ├── data_extraction/        # Data Acquisition & Parsing
+│   │   └── iso_currency/       # ISO-4217 Currency Search Engine
+│   │
+│   ├── shared/                 # Core Infrastructure Modules
+│   │   └── logger.py           # Industrial Logging System (Traceability)
+│   │
 │   └── monitoring/
 │       ├── linux/              # Security & Diagnostics (Bash)
 │       │   ├── auth_audit.sh
@@ -113,6 +119,12 @@ Tech Translator CLI: Automated translation tool optimized for engineering docume
 
 ### 2. Tools (Infrastructure)
 Automation scripts, server monitoring, and system utilities for operational environments.
+
+#### data_extraction/iso_currency/
+ISO-4217 Currency Search Engine. A professional-grade tool for currency code identification featuring a modular scraper and integrated Pytest QA.
+
+#### shared/logger/
+Standardized industrial logging system. Provides centralized auditing and traceability for all modules, featuring multi-handler support for hidden logs and clean user interfaces.
 
 #### automation/linux/
 Operations and maintenance tools.
