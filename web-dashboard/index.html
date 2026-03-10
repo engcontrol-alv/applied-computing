@@ -1,33 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyst Access</title>
+    <title>Alvaro Luiz | IT/OT Solutions</title>
     <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="main-card">
-        
-        <div class="link-section">
-            <a href="../integration/doc-analyst/frontend/app.html" class="app-link">
-                <div class="circle-container">
-                    <img src="assets/doc-analyst-preview.jpg" alt="Preview Doc Analyst" class="cover-image">
-                </div>
-                <div class="link-label">
-                    docAnl
-                </div>
-            </a>
+    <nav class="navbar">
+        <div class="logo">&gt; alvaro_luiz_</div>
+        <div class="nav-links">
+            <a href="#skills">Skills</a>
+            <button id="theme-toggle" class="theme-btn" title="Alternar Modo"><i class="fas fa-sun"></i></button>
         </div>
+    </nav>
 
-        <div class="profile-section">
-            <div class="photo-wrapper">
-                <img src="assets/perfil.jpg" alt="Foto de Perfil" class="user-photo">
+    <header class="hero-split">
+        
+        <div class="hero-text">
+            <p class="greeting">Olá, o meu nome é</p>
+            <h1>Alvaro Luiz.</h1>
+            <h2 class="role">Engenheiro de Automação | Digitalização: Convergência OT/IT.</h2>
+            <p class="bio">
+                Sou movido pela construção da informação: do sinal elétrico que se transforma num bit até a informação estruturada num dashboard que dá insights para tomada de decisão estratégica.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="../integration/doc-analyst/frontend/app.html" class="app-link">
+                    <div class="circle-container">
+                        <img src="assets/doc-analyst-preview.jpg" alt="Preview Doc Analyst" class="cover-image">
+                    </div>
+                    <div class="link-label">docAnl</div>
+                </a>
             </div>
         </div>
 
-    </div>
+        <div class="hero-image">
+            <div class="photo-wrapper">
+                <img src="assets/perfil.jpg" alt="Foto de Alvaro Luiz" class="user-photo">
+            </div>
+        </div>
 
+    </header>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'corporate' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+    </script>
 </body>
 </html>
